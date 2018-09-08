@@ -1,6 +1,7 @@
 package com.example.myducument.demofacebook;
 
 import android.content.Intent;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -26,6 +27,19 @@ public class MainActivity extends AppCompatActivity {
         QuanLi.add(new TaiKhoan("khai", "12345"));
         inIt();
         onClick();
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode==1){
+            if (resultCode==MainActivity.RESULT_OK) {
+                QuanLi.add(new TaiKhoan(data.getStringExtra("user"), data.getStringExtra("pass")));
+                mEditUserName.setText(data.getStringExtra("user"));
+                mEditPassWord.setText(data.getStringExtra("pass"));
+            }
+        }
     }
 
     private void onClick() {
@@ -60,7 +74,6 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, SignIn.class);
                 startActivityForResult(intent, 1);
-
             }
         });
     }
