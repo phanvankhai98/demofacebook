@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
                 QuanLi.add(new TaiKhoan(data.getStringExtra("user"), data.getStringExtra("pass")));
                 mEditUserName.setText(data.getStringExtra("user"));
                 mEditPassWord.setText(data.getStringExtra("pass"));
+                Toast.makeText(this, "them tai khoan thanh cong!!", Toast.LENGTH_SHORT).show();
             }
         }
     }
@@ -64,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
 
             private int checkTaiKhoan(TaiKhoan mTaiKhoan) {
                 for (int i = 0; i < QuanLi.size(); i++) {
-                    if (mTaiKhoan.equals(QuanLi.get(i))) return 1;
+                    if (mTaiKhoan.PassWord.equals(QuanLi.get(i).PassWord)&&mTaiKhoan.UserName.equals(QuanLi.get(i).UserName)) return 1;
                 }
                 return 0;
             }
